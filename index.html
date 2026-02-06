@@ -165,6 +165,69 @@
 
   .result-sub.show { opacity: 1; }
 
+  /* ---- Converter section ---- */
+  .converter-section {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    text-align: center;
+  }
+
+  .converter-section h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+  }
+
+  .converter-box {
+    background: linear-gradient(135deg, var(--pastel-sky), var(--pastel-mint));
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 4px 16px rgba(44, 95, 124, 0.15);
+  }
+
+  .input-group {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .input-group input {
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border: 2px solid var(--whale-blue);
+    border-radius: 10px;
+    width: 150px;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .input-group label {
+    font-weight: 500;
+    color: var(--text-dark);
+  }
+
+  .convert-result {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 12px;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .convert-result-text {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--whale-dark);
+  }
+
   /* ---- Footer ---- */
   footer {
     text-align: center;
@@ -425,6 +488,20 @@
   </div>
 </section>
 
+<!-- Acres to Football Pitches Converter -->
+<section class="converter-section">
+  <h2>Acres to Football Pitches</h2>
+  <div class="converter-box">
+    <div class="input-group">
+      <label for="acresInput">Acres:</label>
+      <input type="number" id="acresInput" placeholder="Enter acres" min="0" step="0.01" oninput="convertAcres()">
+    </div>
+    <div class="convert-result">
+      <div class="convert-result-text" id="convertResult">Enter acres to convert</div>
+    </div>
+  </div>
+</section>
+
 <footer>
   Made with appetite &mdash; Food trawl buddy
 </footer>
@@ -657,6 +734,31 @@
   });
 
 })();
+
+// ---- Acres to Football Pitches Converter ----
+function convertAcres() {
+  const acresInput = document.getElementById('acresInput');
+  const resultDiv = document.getElementById('convertResult');
+
+  const acres = parseFloat(acresInput.value);
+
+  if (isNaN(acres) || acres < 0) {
+    resultDiv.textContent = 'Enter acres to convert';
+    return;
+  }
+
+  if (acres === 0) {
+    resultDiv.textContent = '0 football pitches';
+    return;
+  }
+
+  // Standard English football pitch is approximately 1.76 acres
+  // (Based on typical pitch size of 105m x 68m = 7,140 sq meters = 1.76 acres)
+  const ACRES_PER_PITCH = 1.76;
+  const pitches = acres / ACRES_PER_PITCH;
+
+  resultDiv.innerHTML = `⚽ <strong>${pitches.toFixed(2)}</strong> English football pitches`;
+}
 </script>
 
 <!-- Service Worker registration for offline support -->
