@@ -55,23 +55,16 @@
   }
 
   .hero svg {
+    width: 3600px;
     height: 150px;
     position: absolute;
     top: 5px;
     left: 0;
-  }
-
-  .whale-parade {
-    display: flex;
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
     animation: swim 18s linear infinite;
   }
 
-  /* We render 3 whales across ~1800px, then duplicate the set for seamless loop.
-     Total strip = 3600px. We translate -1800px (half) to loop. */
+  /* 3 whales across ~1800px, duplicated for seamless loop.
+     Strip slides left so whales visually travel left to right. */
   @keyframes swim {
     from { transform: translateX(-1800px); }
     to   { transform: translateX(0); }
@@ -200,7 +193,7 @@
 
 <!-- Hero: three whales swimming left to right, looping -->
 <div class="hero">
-  <svg viewBox="0 0 3600 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Three whales trawling fish across the screen" style="width:3600px; height:150px;">
+  <svg viewBox="0 0 3600 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Three whales trawling fish across the screen">
     <defs>
       <linearGradient id="wg1" x1="0" y1="0" x2="1" y2="1">
         <stop offset="0%" stop-color="#5DADE2"/>
@@ -255,9 +248,6 @@
         <line x1="48" y1="88" x2="100" y2="86" stroke="#fff" stroke-width="0.6" opacity="0.2"/>
       </g>
     </defs>
-
-    <!-- Animation wrapper: class applied for CSS animation -->
-    <g class="whale-parade">
 
       <!-- ===== SET 1 (positions 0-1800) ===== -->
 
@@ -383,7 +373,6 @@
       <use href="#fish3" transform="translate(3380, 68) scale(0.6)"/>
       <use href="#fish1" transform="translate(3460, 50) scale(0.5)"/>
 
-    </g>
   </svg>
 </div>
 
