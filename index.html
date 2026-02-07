@@ -64,10 +64,10 @@
   }
 
   /* 3 whales across ~1800px, duplicated for seamless loop.
-     Strip slides left so whales visually travel left to right. */
+     Strip slides right so whales visually swim right (the way they face). */
   @keyframes swim {
-    from { transform: translateX(0); }
-    to   { transform: translateX(-1800px); }
+    from { transform: translateX(-1800px); }
+    to   { transform: translateX(0); }
   }
 
   /* ---- Spinner section ---- */
